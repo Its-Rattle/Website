@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="red_doxbin_kyrr.png" type="image/x-icon">
+    <meta property="og:title" content="Did you know session likes boys?" />
+    <meta property="og:description" content="Rattle on some wizardry" />
+    <meta property="og:image"
+        content="https://media.discordapp.net/attachments/1163173399498076253/1351239264087703562/pfp.png?ex=67da4fe1&is=67d8fe61&hm=00369af1b657c09c63107e1bfd3ae6b7ace67399cc8aa583bd78426ece6ed70a&=&format=webp&quality=lossless" />
+    <meta property="og:url" content="https://notjeff.gay" />
+    <title>I love boys!</title>
+</head>
+
+<body>
+    <canvas id="starCanvas"></canvas>
+    <script src="main.js"></script>
+    <div class="rain" id="rain"></div>
+    <span class="rainbow-text">Jeff likes boys</span>
+    <div class="profile-container">
+        <img class="profile-pic" src="femboypng.png" alt="Profile Picture">
+      </div>
+    <span class="normal-text" id="normalText">Jeff touches little boys</span>
+
+    <div class="audio-controls">
+        <button id="play-pause">
+            <img src="pause.png" alt="Pause" id="playPauseIcon">
+        </button>
+        <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+    </div>
+
+    <audio id="background-audio" loop autoplay>
+        <source src="Little Girls.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        const audio = document.getElementById('background-audio');
+        const volumeControl = document.getElementById('volume');
+        const playPauseButton = document.getElementById('play-pause');
+        const playPauseIcon = document.getElementById('playPauseIcon');
+
+        volumeControl.addEventListener('input', (event) => {
+            audio.volume = event.target.value;
+        });
+
+        let isPlaying = true;
+
+        playPauseButton.addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+                playPauseIcon.src = 'play.png';
+                isPlaying = false;
+            } else {
+                audio.play().catch(error => {
+                    console.error("Audio play error:", error);
+                    alert("Click to start audio playback.");
+                });
+                playPauseIcon.src = 'pause.png';
+                isPlaying = true;
+            }
+        });
+
+        audio.play().catch(() => {
+            alert("Audio autoplay was blocked by your browser. Please click play to start.");
+        });
+
+        const detectDevTools = () => {
+            let devtoolsOpen = false;
+            const threshold = 160;
+            const checkDevTools = setInterval(() => {
+                const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+                const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+                if (widthThreshold || heightThreshold) {
+                    devtoolsOpen = true;
+                } else {
+                    devtoolsOpen = false;
+                }
+
+                if (devtoolsOpen) {
+                    window.location.href = "https://www.google.com";
+                }
+            }, 1000);
+        };
+
+        detectDevTools();
+
+        const normalTextElement = document.getElementById('normalText');
+        const messages = [
+            "Jeff touches little boys",
+            "Jeff likes furries",
+            "Penis",
+            "Spookiest com kid",
+            "Sometimes i put beans in my milk"
+        ];
+
+        let currentMessageIndex = 0;
+
+        function generateEncryptedText(length) {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()';
+            return Array.from({ length }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+        }
+
+        async function waveReveal(message, encryptedMessage) {
+            for (let i = 0; i <= message.length; i++) {
+                normalTextElement.textContent = message.substring(0, i) + encryptedMessage.substring(i);
+                await new Promise(resolve => setTimeout(resolve, 70));
+            }
+        }
+
+        async function waveEncrypt(message, encryptedMessage) {
+            for (let i = 0; i <= message.length; i++) {
+                normalTextElement.textContent = encryptedMessage.substring(0, i) + message.substring(i);
+                await new Promise(resolve => setTimeout(resolve, 70));
+            }
+        }
+
+        async function cycleMessages() {
+            while (true) {
+                const currentMessage = messages[currentMessageIndex];
+
+                const encryptedMessage = generateEncryptedText(currentMessage.length);
+                normalTextElement.textContent = encryptedMessage;
+
+                await waveReveal(currentMessage, encryptedMessage);
+
+                await new Promise(resolve => setTimeout(resolve, 3000));
+
+                await waveEncrypt(currentMessage, encryptedMessage);
+
+                currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+            }
+        }
+
+        window.onload = () => {
+            cycleMessages();
+            createRain();
+        };
+
+        function createRain() {
+            const rainContainer = document.getElementById("rain");
+            const numDrops = 200;
+
+            for (let i = 0; i < numDrops; i++) {
+                const raindrop = document.createElement("div");
+                raindrop.classList.add("raindrop");
+                rainContainer.appendChild(raindrop);
+
+                raindrop.style.width = `${Math.random() * 1 + 1}px`;
+                raindrop.style.height = `${Math.random() * 15 + 10}px`;
+
+                raindrop.style.left = `${Math.random() * 100}vw`;
+
+                raindrop.style.animationDuration = `${Math.random() * 1.5 + 1}s`;
+                raindrop.style.animationDelay = `-${Math.random() * 2}s`;
+
+                raindrop.style.transform = `rotate(${Math.random() * 10 - 5}deg)`;
+
+                raindrop.style.opacity = `${Math.random() * 0.5 + 0.3}`;
+
+                raindrop.style.filter = `blur(${Math.random() * 0.5 + 0.5}px)`;
+            }
+
+        }
+    </script>
+
+    <style>
+        
+        body {
+            background-color: black;
+            background-image: url('bafca8ce4b836ed8c115ccd5d797bbba.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-size: 3rem;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: cover;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            justify-content: center;
+            align-items: center;
+        }
+        .profile-container {
+            position: absolute;
+            top: 52%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+        @media (max-width: 768px) {
+            body {
+                background-image: url('bafca8ce4b836ed8c115ccd5d797bbba.jpg');
+                background-size: cover;
+            }
+        }
+
+        .audio-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 5;
+        }
+
+        .audio-controls button {
+            background: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .audio-controls img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .audio-controls input[type="range"] {
+            width: 100px;
+            height: 10px;
+        }
+
+        .rainbow-text {
+            font-weight: bold;
+            background-image: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet, red);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 100%;
+            animation: rainbow-scroll 4s linear infinite;
+            position: absolute;
+            top: 40%;
+            z-index: 2;
+        }
+
+        @keyframes rainbow-scroll {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 400% 50%;
+            }
+        }
+
+        .raindrop {
+            position: absolute;
+            background: rgb(255, 238, 0);
+            animation: rain-fall linear infinite;
+        }
+
+        @keyframes rain-fall {
+            from {
+                transform: translateY(-100%) rotate(0deg);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        .rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .normal-text {
+            position: absolute;
+            top: 60%;
+            font-size: 2rem;
+            color: rgb(174, 0, 255);
+            font-weight: bold;
+            z-index: 2;
+            animation: blink 2s infinite;
+            padding-bottom: 50px;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .social-buttons {
+            position: absolute;
+            top: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            z-index: 2;
+        }
+
+        .social-button {
+            display: block;
+            width: 50px;
+            height: 50px;
+            border-radius: 60%;
+            overflow: hidden;
+        }
+
+        .social-button:hover {
+            background-color: #3d3d3db2;
+        }
+
+        .social-icon {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</body>
+
+</html>
